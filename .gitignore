@@ -1,0 +1,14 @@
+.gradle/
+build/
+out/
+target/
+*.class
+*.jar
+*.log
+.env*
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp

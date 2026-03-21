@@ -1,50 +1,53 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# AUTO_FRONT_SCREENPLAY Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Spec-First
+Toda funcionalidad comienza con un spec aprobado en `.specify/specs/`.
+No se escribe código de producción sin spec + plan aprobados.
+El spec define los escenarios observables en el sistema real; no se inventan flujos.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Java + Serenity BDD
+Stack único: Java 21, Serenity BDD 4.2.9, Selenium, JUnit 4, Cucumber.
+`CucumberWithSerenity` es el runner obligatorio.
+`serenity-gradle-plugin 4.2.9` genera el reporte agregado.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Screenplay Pattern (NON-NEGOTIABLE)
+Patrón obligatorio: Actors, Tasks, Actions, Questions con responsabilidad única (SRP).
+`Target.the(...).locatedBy(...)` para todos los selectores — sin `@FindBy`, sin `driver.findElement`.
+Tasks implementan `Performable`; Questions implementan `Question<T>`.
+Los Steps (`@Step`) solo orquestan Tasks y Questions; cero lógica de UI directa.
+Los escenarios de este proyecto DEBEN ser distintos a los de `AUTO_FRONT_POM_FACTORY`.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Código Limpio
+Sin comentarios en código, sin lógica de negocio en el runner.
+Configuración de URLs y propiedades en `serenity.conf`, no en Java.
+Nomenclatura semántica en todos los artefactos.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Escenarios Independientes
+Cada escenario prepara sus propias precondiciones vía API antes de ejecutarse.
+Ningún escenario depende del estado dejado por otro.
+Ejecutar cualquier escenario en aislamiento produce PASS.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Constraints Técnicos
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- Target: `http://localhost:3000` (Frontend Next.js — TicketRush)
+- Página de prueba: `/admin` — Panel de gestión de eventos
+- Sin autenticación: la aplicación no tiene login
+- Datos de prueba controlados por API antes de cada escenario
+- `./gradlew test aggregate` es el comando de ejecución
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Quality Gates
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- 2 escenarios Gherkin en 1 `.feature`, ambos con estado PASS en reporte Serenity
+- Cada escenario es ejecutable de forma aislada
+- Código sin comentarios ni variables no semánticas
+- Reporte en `target/site/serenity/`
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+Esta constitución prevalece sobre cualquier otra práctica.
+Enmiendas requieren documentación, aprobación y plan de migración.
+Toda PR/revisión debe verificar cumplimiento de los 5 principios.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-03-20 | **Last Amended**: 2026-03-20

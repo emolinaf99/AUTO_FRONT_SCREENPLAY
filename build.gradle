@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'net.serenity-bdd.serenity-gradle-plugin' version '4.2.8'
+}
+
+def serenityVersion = '4.2.8'
+
+group = 'co.sofka'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "net.serenity-bdd:serenity-core:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-junit:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-cucumber:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-screenplay:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-rest-assured:${serenityVersion}"
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.assertj:assertj-core:3.25.3'
+}
+
+tasks.withType(Test).configureEach {
+    useJUnit()
+    testLogging {
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
+    systemProperties System.getProperties()
+}
+
+gradle.startParameter.continueOnFailure = true
+
+tasks.named('test') {
+    finalizedBy(tasks.named('aggregate'))
+}
+
+tasks.named('wrapper') {
+    gradleVersion = '9.0.0'
+}

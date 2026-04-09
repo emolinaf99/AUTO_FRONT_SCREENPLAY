@@ -1,9 +1,20 @@
-defaultTasks 'clean', 'test', 'aggregate'
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:4.2.8"
+    }
+}
 
 plugins {
     id 'java'
-    id 'net.serenity-bdd.serenity-gradle-plugin' version '4.2.0'
 }
+
+apply plugin: 'net.serenity-bdd.serenity-gradle-plugin'
+
+defaultTasks 'clean', 'test', 'aggregate'
 
 group 'org.example'
 version '1.0-SNAPSHOT'
@@ -19,7 +30,7 @@ java {
 }
 
 ext {
-    serenityVersion = '4.2.0'
+    serenityVersion = '4.2.8'
     cucumberVersion = '7.18.0'
 }
 

@@ -1,4 +1,4 @@
-package com.ticketing.questions;
+package com.ticketify.questions;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;

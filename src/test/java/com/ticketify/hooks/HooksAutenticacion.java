@@ -1,7 +1,7 @@
-package com.ticketing.hooks;
+package com.ticketify.hooks;
 
-import com.ticketing.util.Credenciales;
-import com.ticketing.util.CredencialesBuilder;
+import com.ticketify.util.Credenciales;
+import com.ticketify.util.CredencialesBuilder;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import net.serenitybdd.screenplay.actors.OnStage;

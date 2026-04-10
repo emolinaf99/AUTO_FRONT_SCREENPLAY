@@ -1,6 +1,6 @@
-package com.ticketing.questions;
+package com.ticketify.questions;
 
-import com.ticketing.ui.LoginUi;
+import com.ticketify.ui.LoginUi;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
 

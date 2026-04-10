@@ -1,11 +1,11 @@
-package com.ticketing.stepdefinitions;
+package com.ticketify.stepdefinitions;
 
-import com.ticketing.questions.MensajeDeBloqueoCuenta;
-import com.ticketing.questions.TokenGuardado;
-import com.ticketing.questions.UrlActual;
-import com.ticketing.tasks.IniciarSesion;
-import com.ticketing.ui.HomeUi;
-import com.ticketing.util.CredencialesBuilder;
+import com.ticketify.questions.MensajeDeBloqueoCuenta;
+import com.ticketify.questions.TokenGuardado;
+import com.ticketify.questions.UrlActual;
+import com.ticketify.tasks.IniciarSesion;
+import com.ticketify.ui.HomeUi;
+import com.ticketify.util.CredencialesBuilder;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;

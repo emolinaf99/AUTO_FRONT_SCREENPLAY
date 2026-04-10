@@ -1,4 +1,4 @@
-package com.ticketing.util;
+package com.ticketify.util;
 
 public final class Credenciales {
 

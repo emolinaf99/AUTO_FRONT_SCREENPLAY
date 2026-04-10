@@ -1,4 +1,4 @@
-package com.ticketing.ui;
+package com.ticketify.ui;
 
 import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
